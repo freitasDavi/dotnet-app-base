@@ -11,7 +11,7 @@ using dotnet.Data;
 
 namespace dotnet.Migrations
 {
-    [DbContext(typeof(UsuarioContext))]
+    [DbContext(typeof(DataContext))]
     [Migration("20230627173453_InitialCreate")]
     partial class InitialCreate
     {

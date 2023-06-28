@@ -12,8 +12,8 @@ using dotnet.Data;
 namespace dotnet.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230627174031_UpdateUsuarios")]
-    partial class UpdateUsuarios
+    [Migration("20230628121839_CreatedCourseAndRefactor")]
+    partial class CreatedCourseAndRefactor
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,27 +25,51 @@ namespace dotnet.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("dotnet.Models.Courses", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("CourseId");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("CATEGORIA");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("NOME");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("tb_courses", (string)null);
+                });
+
             modelBuilder.Entity("dotnet.Models.Usuario", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("id");
+                        .HasColumnName("USER_ID");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("DataNascimento")
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("data_nascimento");
+                        .HasColumnName("DATA_NASC");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("text")
-                        .HasColumnName("nome");
+                        .HasColumnName("NOME");
 
                     b.HasKey("Id");
 
-                    b.ToTable("usuario", (string)null);
+                    b.ToTable("tb_users", (string)null);
                 });
 #pragma warning restore 612, 618
         }

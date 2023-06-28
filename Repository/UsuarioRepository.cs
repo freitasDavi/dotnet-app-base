@@ -6,8 +6,8 @@ namespace dotnet.Repository
 {
     public class UsuarioRepository : IUsuarioRepository
     {
-        private readonly UsuarioContext _context;
-        public UsuarioRepository(UsuarioContext context)
+        private readonly DataContext _context;
+        public UsuarioRepository(DataContext context)
         {
             _context = context;
         }
