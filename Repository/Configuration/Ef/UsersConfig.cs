@@ -1,14 +1,18 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using dotnet.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace dotnet.Repository.Configuration.Ef
 {
-    public class UsuarioConfig : IEntityTypeConfiguration<Usuario>
+    public class UsersConfig : IEntityTypeConfiguration<User>
     {
-        public void Configure(EntityTypeBuilder<Usuario> builder)
+        public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.ToTable("tb_usuarios");
+            builder.ToTable("tb_users");
 
             builder.HasKey(x => new { x.Id });
 
@@ -21,8 +25,13 @@ namespace dotnet.Repository.Configuration.Ef
                 .HasColumnName("NOME")
                 .IsRequired();
 
-            builder.Property(x => x.DataNascimento)
-                .HasColumnName("DATA_NASC");
+            builder.Property(x => x.Password)
+                .HasColumnName("PASSWORD")
+                .IsRequired();
+
+            builder.Property(x => x.Role)
+                .HasColumnName("ROLE")
+                .IsRequired();
         }
     }
 }
