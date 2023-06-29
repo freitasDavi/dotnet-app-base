@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using dotnet.Models;
 using dotnet.Repository.Courses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace dotnet.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class CoursesController : ControllerBase

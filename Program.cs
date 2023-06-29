@@ -54,7 +54,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowSpecificOrigins,
                         policy =>
                         {
-                            policy.WithHeaders("Content-Type", "only-if-cached");
+                            policy.WithHeaders("Content-Type", "Authorization", "only-if-cached");
                             policy.AllowAnyMethod();
                             policy.WithOrigins("http://localhost:5173",
                                                 "http://localhost:3000",
